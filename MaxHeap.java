@@ -1,0 +1,31 @@
+package com.pantos.vms.biz.test;
+
+import java.io.IOException;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class MaxHeap {
+
+	public static void main(String[] args) throws IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		int number = sc.nextInt();
+
+		PriorityQueue<Integer> heap = new PriorityQueue<>();
+
+		for (int i = 0; i < number; i++) {
+			int num = sc.nextInt();	//숫자 계속
+
+			if (num == 0) {
+				if (!heap.isEmpty()) {
+					System.out.println(heap.poll());
+				} else {
+					System.out.println("0");
+				}
+				continue;
+			}
+			heap.add(num);
+		}
+	}
+}
