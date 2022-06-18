@@ -1,18 +1,15 @@
-package com.pantos.vms.biz.test;
-
-import java.io.IOException;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class BOJ11279 {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-
 		int number = sc.nextInt();
 
-		PriorityQueue<Integer> heap = new PriorityQueue<>();
+		PriorityQueue<Integer> heap = new PriorityQueue<>(Collections.reverseOrder());
 
 		for (int i = 0; i < number; i++) {
 			int num = sc.nextInt();	//숫자 계속
@@ -23,7 +20,6 @@ public class BOJ11279 {
 				} else {
 					System.out.println("0");
 				}
-				continue;
 			}
 			heap.add(num);
 		}
