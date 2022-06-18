@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/algorithm-study.iml" filepath="$PROJECT_DIR$/.idea/algorithm-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bby/Programmers/Programmers.iml" filepath="$PROJECT_DIR$/bby/Programmers/Programmers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bby/bby.iml" filepath="$PROJECT_DIR$/bby/bby.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cy/cy.iml" filepath="$PROJECT_DIR$/cy/cy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ksh/ksh.iml" filepath="$PROJECT_DIR$/ksh/ksh.iml" />
     </modules>
   </component>
 </project>
