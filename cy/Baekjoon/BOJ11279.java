@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
-public class BOJ0002 {
+public class BOJ11279 {
     public static void main(String args[]) throws Exception{
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

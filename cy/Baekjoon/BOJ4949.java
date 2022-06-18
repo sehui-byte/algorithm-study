@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class BOJ0001 {
+public class BOJ4949 {
     public static void main(String args[]) throws Exception{
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,6 +18,7 @@ public class BOJ0001 {
             if (".".equals(s)) {
                 break;
             }
+
             // 글자 하나씩 읽고, Stack add하기
             for (int i = 0; i < s.length(); i++) {
                 Character c = s.charAt(i);
