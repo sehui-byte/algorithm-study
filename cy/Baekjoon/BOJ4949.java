@@ -1,85 +1,63 @@
 package Baekjoon;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
 public class BOJ4949 {
-    public static void main(String args[]) throws Exception{
+
+    private void checkStackSize(Stack<Character> stack){
+
+    }
+
+    public static void main(String args[]) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         StringBuffer sb = new StringBuffer();
 
-        while (true) {
+        while(true) {
             Stack<Character> stack =  new Stack<>();
             // 엔터 기준으로 받는 글자
             String s = br.readLine();
+
+            if(".".equals(s)) break;
+
             // 문제 조건이 "."값을 받으면 종료
-            if (".".equals(s)) {
-                break;
-            }
+            for(int i=0; i < s.length(); i++){
 
-            // 글자 하나씩 읽고, Stack add하기
-            for (int i = 0; i < s.length(); i++) {
-                Character c = s.charAt(i);
+                char c = s.charAt(i);
 
-                if ('(' == c) {
-                    stack.add(c);
-                } else if (')' == c) {
-                    stack.add(c);
-                } else if ('[' == c) {
-                    stack.add(c);
-                } else if (']' == c) {
-                    stack.add(c);
-                }
-            }
-            // 괄호 없는 글
-            if(stack.isEmpty()){
-                sb.append("yes\n");
-                continue;
-            }
-            // 스택 size가 홀수면 false
-            if(stack.size() % 2 == 1){
-                sb.append("no\n");
-                continue;
-            }
-            // 끝에 ( 나 [ 로 끝나면 false
-            if(stack.peek() == '(' || stack.peek() == '['){
-                sb.append("no\n");
-                continue;
-            }
-
-            Stack<Character> checkStack = new Stack<>();
-
-            while(!stack.isEmpty()) {
-                char curr = stack.pop();
-                if(checkStack.isEmpty()){
-                    checkStack.add(curr);
-                    continue;
+                if(c == '.'){
+                    break;
                 }
 
-                if(curr == ')' || curr == ']'){
-                    checkStack.add(curr);
-                } else if(curr == '('){
-                    if(checkStack.peek() == ')'){
-                        checkStack.pop();
-                    } else {
-                        sb.append("no\n");
-                        continue;
+                if(c == '(' || c == '['){
+                    stack.add(c);
+                } else if(c == ')'){
+                    if(stack.size() == 0 || stack.peek() != '('){
+                        stack.add(c);
+                        break;
+                    } else{
+                        stack.pop();
                     }
-                } else if(curr == '['){
-                    if(checkStack.peek() == ']'){
-                        checkStack.pop();
-                    } else {
-                        sb.append("no\n");
-                        continue;
+                } else if(c == ']'){
+                    if(stack.size() == 0 || stack.peek() != '['){
+                        stack.add(c);
+                        break;
+                    } else{
+                        stack.pop();
                     }
                 }
             }
-            if(checkStack.isEmpty()){
+            if(stack.size() > 0){
+                sb.append("no\n");
+            } else{
                 sb.append("yes\n");
             }
         }
+
         System.out.println(sb.toString());
     }
 }
