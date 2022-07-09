@@ -15,7 +15,7 @@ public class BOJ2805 {
         for (int i = 0; i < n; i++) {
             trees[i] = sc.nextInt();
         }
-        Arrays.sort(trees);
+
         int first = 0;
         int last = Arrays.stream(trees).max().getAsInt(); //최대 높이의 나무
         int middle = (last + first) / 2;
