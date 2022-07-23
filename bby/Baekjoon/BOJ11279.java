@@ -9,7 +9,8 @@ public class BOJ11279 {
 		Scanner sc = new Scanner(System.in);
 		int number = sc.nextInt();
 
-		PriorityQueue<Integer> heap = new PriorityQueue<>(Collections.reverseOrder());
+		// 우선순위 큐 구조 활용 : 완전 이진트리의 최소힙 참조링크 : https://st-lab.tistory.com/205
+		PriorityQueue<Integer> heap = new PriorityQueue<>(Collections.reverseOrder());	// 우선순위 큐는 기본적으로 최소-힙의 형태이므로 reverseOrder 로 역순 설정.
 
 		for (int i = 0; i < number; i++) {
 			int num = sc.nextInt();	//숫자 계속
