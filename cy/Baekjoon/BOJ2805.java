@@ -1,60 +1,51 @@
 package Baekjoon;
 
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
 
 public class BOJ2805 {
 
-    public static long M;
-    public static int N;
-    public static long [] tree;
+    public static final Scanner SCANNER = new Scanner(System.in);
 
-    public static long cut(long mid) {
-        long sum = 0;
-        for(int i=0; i < N; i++) {
-            if(tree[i]-mid>0)
-                sum += tree[i]-mid;
-        }
-        return sum;
-    }
+    public static void main(String[] args) {
+        int K = SCANNER.nextInt();
+        int N = SCANNER.nextInt();
 
-    public static void main(String[] args) throws Exception{
+        int arr[] = new int[K];
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer str = new StringTokenizer(br.readLine());
+        long max = 0;
+        long min = 0;
+        long mid = 0;
 
+        for(int i=0; i < K; i++){
+            arr[i] = SCANNER.nextInt();
 
-        N = Integer.parseInt(str.nextToken());
-        M = Long.parseLong(str.nextToken());
-
-        long ans =0;
-
-        String [] s = br.readLine().split(" ");
-
-        tree = new long[N];
-
-        for(int i=0; i < N; i++) {
-            tree[i] = Long.parseLong(s[i]);
-        }
-
-        Arrays.sort(tree);
-
-        long start = 0;
-        long end = tree[N-1];
-
-        while(start<=end) {
-            long mid = (start + end)/2;
-
-            if(cut(mid)>=M) {
-                ans = Math.max(ans, mid);
-                start = mid+1;
-            }
-            else {
-                end = mid-1;
+            // 최대값 찾기
+            if(max <= arr[i]) {
+                max = arr[i];
             }
         }
-        System.out.println(ans);
+
+        while(min <= max){
+            long total = 0;
+
+            mid = (min + max) / 2;
+
+            for(int i=0; i < K; i++){
+                if(arr[i] - mid > 0){
+                    total += arr[i] - mid;
+                }
+            }
+
+            // 짜른 길이가 원하는 길이보다 더 길면 나무 절단기 높이를 더 올려야 함
+            // min을 mid로 설정
+            if(total >= N){
+                min = mid + 1;
+                // 짜른 길이가 원하는 길이보다 더 짧으면 나무 절단기 높이를 더 낮춰야 함
+                // max를 mid로 설정
+            } else {
+                max = mid - 1;
+            }
+        }
+        System.out.println(min-1);
     }
 }
-
-
