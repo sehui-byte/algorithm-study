@@ -8,7 +8,7 @@ class Solution {
         int answer = 0;
 
         // i는 가입할 날
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < discount.length; i++) {
             System.out.println(" ===================" + (i+1) + "일차 ===============");
             boolean satisfy = false;
             // 가입한 날부터 10일간 내가 바라는것들과 일치하는지 체크
@@ -16,9 +16,7 @@ class Solution {
             for(String tenDay : tenDays) {
                 System.out.print(tenDay + ", ");
             }
-            /* tenDays를 hashMap으로 바꾼다
-            그리고 tenDays에서 그 상품 개수랑 number랑 개수 비교하면 되지 않나?
-            * */
+
             HashMap<String, Integer> discountMap = new HashMap<String, Integer>();
             for (int j = 0; j < 10; j++) {
                 discountMap.put(tenDays[j], discountMap.getOrDefault(tenDays[j], 0) + 1);
@@ -35,8 +33,7 @@ class Solution {
                 satisfy = true;
             }
             if (satisfy) {
-                answer = i + 1;
-                break;
+                answer++;
             }
         }
         return answer;
