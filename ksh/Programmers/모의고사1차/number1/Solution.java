@@ -30,7 +30,8 @@ class Solution {
                 commonList.add(xArr[i]);
                 xArr[i] = 'a';
                 yArr[yIdx] = 'b';
-                Y = Arrays.toString(yArr);
+//                Y = Arrays.toString(yArr); // 이거 잘못됨 [1,2,3,4] 이런식으로 됨
+                Y = new String(yArr);
 //                System.out.println("Y : " + Y);
             }
         }
