@@ -8,13 +8,13 @@ class Solution {
         Stack<Integer> supportBelt = new Stack<Integer>();
         Stack<Integer> mainBelt = new Stack<Integer>();
 
-        for (int i = 5; i>0; i--) {
+        for (int i = 5; i > 0; i--) {
             mainBelt.add(i);
         }
 
         int orderIdx = 0;
         while (true) {
-            if(orderIdx == order.length) {
+            if (orderIdx == order.length) {
                 break;
             }
 
@@ -24,7 +24,6 @@ class Solution {
             if (!mainBelt.contains(element) && !supportBelt.isEmpty() && supportBelt.peek() != element) {
                 break;
             }
-
 
 
             // 메인 컨테이너벨트에 원하는 상품이 있으면 꺼낸다
@@ -38,9 +37,11 @@ class Solution {
                     supportBelt.pop();
                     answer++;
                     orderIdx++;
-                } else { //보조벨트에도 없으면 보조벨트로 메인벨트에 있는걸 옮긴다
+                } else if (mainBelt.contains(element)) { //보조벨트에도 없으면 보조벨트로 메인벨트에 있는걸 옮긴다
                     supportBelt.push(mainBelt.peek());
                     mainBelt.pop();
+                } else {
+                    break;
                 }
             }
         }
@@ -53,7 +54,7 @@ class Solution {
 //        int[] order = {4, 3, 1, 2, 5};
 //        System.out.println(solution(order));
 
-        int[] order2 = {5,4,3,2,1};
+        int[] order2 = {5, 4, 3, 2, 1};
         System.out.println(solution(order2));
     }
 }
