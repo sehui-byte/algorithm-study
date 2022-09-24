@@ -1,0 +1,14 @@
+class Solution {
+    public int solution(int[] order) {
+        int answer = 0;
+
+        // 컨테이너는 항상 1,2,3,4,5 로..
+        // 택배 기사가 order 순서를 꼬았을 경우.
+        
+        int ArrLength = 0;
+        ArrLength = order.length;
+
+        answer = ArrLength;
+        return answer;
+    }
+}
