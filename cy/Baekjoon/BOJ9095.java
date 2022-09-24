@@ -1,5 +1,7 @@
 package Baekjoon;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class BOJ9095 {
@@ -32,6 +34,8 @@ public class BOJ9095 {
 
             cal(sum, num);
             System.out.println(answer);
+
+            
         }
     }
 }
