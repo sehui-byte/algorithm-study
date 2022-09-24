@@ -1,6 +1,10 @@
 package Programmers.입국심사;
 
+<<<<<<< HEAD
 public class Solution {
+=======
+class Solution {
+>>>>>>> fa099487947f51289eb3f66f64390c52c6b05ee2
     public long solution(int n, int[] times) {
 
         long answer = Long.MAX_VALUE;
@@ -33,6 +37,13 @@ public class Solution {
                 max = mid - 1;
             }
         }
+<<<<<<< HEAD
         return answer;
     }
 }
+=======
+
+        return answer;
+    }
+}
+>>>>>>> fa099487947f51289eb3f66f64390c52c6b05ee2
