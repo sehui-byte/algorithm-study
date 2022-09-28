@@ -18,11 +18,11 @@ public class Solution {
         int[][] move = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}}; // 상하좌우
         Queue<Position> positions = new LinkedList<>(); // 방문한 위치를 저장
         positions.add(new Position(0, 0)); // 시작점
+        count[0][0] = 1;
 
         while (!positions.isEmpty()) {
-            // queue에서 꺼내서 방문
+            // queue에서 방문한 노드를 꺼낸다
             Position position = positions.poll();
-            position.visit(maps);
 
             // 상하좌우로 이동
             for (int i = 0; i < 4; i++) {
@@ -34,11 +34,12 @@ public class Solution {
                 // 막혀있거나 이미 지난간 길일 때
                 if (maps[toMove.x][toMove.y] == 0) continue;
 
-                count[toMove.x][toMove.y] = count[position.x][position.y];
+                // 방문
                 positions.add(toMove);
+                toMove.visit(maps, count[position.x][position.y]);
             }
         }
-        return count[maps.length-1][maps[0].length-1] == 0 ? -1 : count[maps.length-1][maps[0].length-1];
+        return count[maps.length - 1][maps[0].length - 1] == 0 ? -1 : count[maps.length - 1][maps[0].length - 1];
     }
 
 
@@ -52,8 +53,8 @@ public class Solution {
             this.y = y;
         }
 
-        public void visit(int[][] maps) {
-            count[this.x][this.y]++;
+        public void visit(int[][] maps, int currentCount) {
+            count[this.x][this.y] = currentCount + 1;
             maps[this.x][this.y] = 0; // 방문 후 해당 길을 막아버리기
         }
     }
