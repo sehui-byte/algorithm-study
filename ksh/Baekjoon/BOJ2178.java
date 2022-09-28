@@ -17,34 +17,30 @@ public class BOJ2178 {
         for (int i = 0; i < n; i++) {
             String s = sc.nextLine();
             for (int j = 0; j < m; j++) {
-                map[i][j] = s.charAt(j) - '0';
+                map[i][j] = s.charAt(j) - '0'; // convert char to int
             }
         }
 
         Queue<Position> positionQueue = new LinkedList<>();
         int[][] move = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}}; // 상하좌우
         positionQueue.add(new Position(0, 0)); // 시작점
-        count[0][0] = 1;
+        count[0][0] = 1; map[0][0] = 0;
 
         while (!positionQueue.isEmpty()) {
-            Position toVisit = positionQueue.poll();
-            map[toVisit.x][toVisit.y] = 0; //방문한 지점은 더이상 방문하지 못하도록 0으로 세팅
+            Position currentVisit = positionQueue.poll(); // 최근 방문한 노드
 
             for (int i = 0; i < 4; i++) {
-                Position toMove = new Position(move[i][0] + toVisit.x, move[i][1] + toVisit.y);
+                Position toMove = new Position(move[i][0] + currentVisit.x, move[i][1] + currentVisit.y);
 
                 // 이동 가능 범위 벗어남
-                if (toMove.x < 0 || toMove.y < 0 || toMove.x == n || toMove.y == m) {
-                    continue;
-                }
-
+                if (toMove.x < 0 || toMove.y < 0 || toMove.x == n || toMove.y == m) continue;
                 // 지나갈 수 없는 길이거나 이미 지나간 길
-                if (map[toMove.x][toMove.y] == 0) {
-                    continue;
-                }
+                if (map[toMove.x][toMove.y] == 0) continue;
 
+                // 방문
                 positionQueue.add(toMove);
-                count[toMove.x][toMove.y] += count[toVisit.x][toVisit.y] + 1;
+                count[toMove.x][toMove.y] += count[currentVisit.x][currentVisit.y] + 1;
+                map[toMove.x][toMove.y] = 0;
             }
         }
 

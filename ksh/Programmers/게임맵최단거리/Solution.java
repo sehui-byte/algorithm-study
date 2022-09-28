@@ -21,7 +21,7 @@ public class Solution {
         count[0][0] = 1;
 
         while (!positions.isEmpty()) {
-            // queue에서 방문한 노드를 꺼낸다
+            // queue에서 최근 방문한 노드를 꺼낸다
             Position position = positions.poll();
 
             // 상하좌우로 이동
