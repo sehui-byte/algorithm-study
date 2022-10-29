@@ -1,0 +1,101 @@
+import java.util.*;
+
+public class BOJ1753{
+    
+    // node 정보
+    static class NodeList{
+        // 노드의 순서 그리고 비용
+        int index, cost;
+        
+        // 각 노드에 대한 순서와 비용
+        public NodeList(int index, int cost){
+            this.index = index;
+            this.cost = cost;
+        }
+    }
+    
+    public static int V, E, k; // 정점과 간선의 수, 시작점 k
+    public static ArrayList<ArrayList<Node>> graph; // 2차 배열
+    public static int[] dist; // 이동한 노드로의 거리 계산
+    
+    public static void main(String[] args){
+        
+        // 입력 정보
+        Scanner in = new Scanner(System.in);
+        
+        V = in.nextInt();
+        E = in.nextInt();
+        K = in.nextInt();
+        
+        // 초기화 식
+        graph = new ArrayList<ArrayList<Node>>();
+        
+        // 정점의 개수 만큼 초기화
+        for(int i =0; i < V+1; i++){
+            graph.add(new ArrayList<Node>());
+        }
+        
+        // 간선의 수 만큼 노드의 정점 번호를 부여하여 2차원 그래프에 저장
+        for(int i = 0; i < E+1; i++){
+            int u = in.nextInt();
+            int v = in.nextInt();
+            int w = in.nextInt();
+            
+            // u 라는 지점에서 새로운 v 노드로 가는 간선의 w 시간
+            graph.get(u).add(new Node(v, w));
+        }
+        
+        // 특정 줄부터 정점의 번호가 생기니 초기화 실행..
+        dist = new int[V+1];
+        
+        // 최고치 설정
+        for(int i = 0; i < V+1; i++){
+            dist[i] = Integer.MAX_VALUE;
+        }
+        
+        // 최소 비용을 기준으로 다익스트라 = 큐를 통해 최소치 dist 값을 찾으면 갱신.
+        PriorityQueue<Node> queue = new PriorityQueue<Node>((x1, x2) 
+          -> Integer.compare(x1.cost, x2.cost));
+        
+        // 시작에서 가장 짧은 정점은 시작이므로 0 의 거리를 따로 부여해야함.
+        queue.offer(new Node(K, 0));
+        // 따라서 처음에는 시작 정점인 제자리가 선택이 되므로 0을 삽입.
+        dist[K] = 0;
+        
+        // 우선순위 큐를 계속 dist 값을 비교하여 갱신하기
+        while(!queue.isEmpty()){
+            // 큐에서 출력
+            Node distance = queue.poll();
+            
+            // 여기서 해당 비교해본 dist 값이 기존거보다 크면 그냥 패스~
+            if(dist[distance.idx] < temp.cost){
+                continue;
+            }
+            
+            // 주변의 정점을 탐색하여, 주변 정점의 카운터와 현재 위치한 정점 + 현재 기준 주변의 정점 사이의
+            // 우선순위를 비교하여 더 작은 값 선택하기.
+            // 서울에서 대전을 가려고 평택까지 내려왔어,
+            // 그런데 평택에서 그대로 이천 방향으로 가는게 빠른가?
+            // 아니면 주변의 서산방향으로 갔다가 거기서 탐색하는게 빠른가?
+            for(int i = 0; i < graph.get(distance.idx).size(); i++){
+                // i 를 넣는 이유는 주변의 정점이 몇개가 있는지 모름.
+                // = 그만큼 반복하여 탐색
+                Node nextNode = graph.get(distance.idx).get(i);
+                
+                if(dist[nextNode.idx] > distance.cost + nextNode.cost ){
+                    dist[nextNode.idx] = distance.cost +nextNode.cost;
+                    queue.offer(new Node(nextNode.idx, dist[nextNode.idx]));
+                }
+            }
+        }
+        
+        // 정점을 각자 순회하면서 도달하기 까지 걸린 시간을 구하자.
+        for(int i = 1; i < V+1; i++){
+            if(dist[i] == Integer.MAX_VALUE){
+                System.out.println("INF");
+            }else{
+                System.out.println(dist[i]);
+            }
+        }
+    }
+}
