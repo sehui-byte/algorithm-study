@@ -31,6 +31,7 @@ public class BOJ1753{
         graph = new ArrayList<ArrayList<Node>>();
         
         // 정점의 개수 만큼 초기화
+        // 큐를 돌리기 이전, 그래프를 쌓기만 하므로 ArrayList...
         for(int i =0; i < V+1; i++){
             graph.add(new ArrayList<Node>());
         }
@@ -42,6 +43,7 @@ public class BOJ1753{
             int w = in.nextInt();
             
             // u 라는 지점에서 새로운 v 노드로 가는 간선의 w 시간
+            // 계산하여 출력해야되는 값이 u -> v (v * w)
             graph.get(u).add(new Node(v, w));
         }
         
@@ -77,7 +79,7 @@ public class BOJ1753{
             // 서울에서 대전을 가려고 평택까지 내려왔어,
             // 그런데 평택에서 그대로 이천 방향으로 가는게 빠른가?
             // 아니면 주변의 서산방향으로 갔다가 거기서 탐색하는게 빠른가?
-            for(int i = 0; i < graph.get(distance.idx).size(); i++){
+            for(int i = 0; i < graph.get(distance.idx).size(); i++){        // distance.idx = K
                 // i 를 넣는 이유는 주변의 정점이 몇개가 있는지 모름.
                 // = 그만큼 반복하여 탐색
                 Node nextNode = graph.get(distance.idx).get(i);
@@ -92,10 +94,10 @@ public class BOJ1753{
         // 정점을 각자 순회하면서 도달하기 까지 걸린 시간을 구하자.
         
         // 포인트1 : linkedList , ArrayList 를 쓰는 조건 vs [][] 조건
-        // 포인트2 : queue 를 따로 호출하지 않은 dist[]의 계산 로직..
         for(int i = 1; i < V+1; i++){
             if(dist[i] == Integer.MAX_VALUE){
-                System.out.println("INF");
+                // not found
+                System.out.println("INF"); 
             }else{
                 System.out.println(dist[i]);
             }
