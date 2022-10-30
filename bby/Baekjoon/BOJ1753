@@ -90,6 +90,9 @@ public class BOJ1753{
         }
         
         // 정점을 각자 순회하면서 도달하기 까지 걸린 시간을 구하자.
+        
+        // 포인트1 : linkedList , ArrayList 를 쓰는 조건 vs [][] 조건
+        // 포인트2 : queue 를 따로 호출하지 않은 dist[]의 계산 로직..
         for(int i = 1; i < V+1; i++){
             if(dist[i] == Integer.MAX_VALUE){
                 System.out.println("INF");
